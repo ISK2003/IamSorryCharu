@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apology Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.6/lottie.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti"></script>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Ensures sections are spaced correctly */
+    }
+    
+    .thank-you-message {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    #flower-animation {
+      width: 300px;
+      height: 300px;
+      position: absolute;
+      bottom: 20px; /* Position at the bottom */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .thank-you-image {
+      transform: scale(0);
+      transition: transform 2s ease-out; /* Adjust the duration here */
+      width: 300px;
+      height: 300px;
+      display: block;
+      margin: 0 auto; /* Centers the image */
+    }
+
+    .container {
+      text-align: center;
+      margin-bottom: 20px;
+      flex-grow: 1; /* Ensures it stays at the top */
+    }
+
+    .final-message {
+      margin-top: 20px;
+    }
+
+    .final-message p {
+      margin-bottom: 20px; /* Adds space between text and button */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Thank You Message (At the top of the page) -->
+  
+    <img src="\Cream Light Romantic Wedding Heart Photo Collage.png" alt="Thank You" class="thank-you-image" />
+  </div>
+
+  <!-- Apology Message Content (in the middle) -->
+  <div class="container">
+    <h1 class="apology-message">I'm really sorry for the hurtful things I said. You mean the world to me.</h1>
+    <p class="typewriter">"Every word I said was wrong, and I can't tell you how sorry I am. I want to make it right."</p>
+    <div class="final-message">
+      <p>“I’m not perfect, but I’m so lucky to have you. Can we start fresh?”</p>
+      <p><strong>I promise to never make you feel this way again. I'll work hard to be better, for you and for us.</strong></p>
+      <button class="forgive-btn" onclick="startAnimation()">Forgive Me?</button>
+    </div>
+  </div>
+
+  <!-- Blooming Flower Animation (Initially Hidden) -->
+  <div id="flower-animation" style="visibility: hidden;"></div>
+
+  <!-- Script to Load and Play Lottie Animation Only When Button Is Clicked -->
+  <script>
+    let animation;
+
+    function startAnimation() {
+      // Make the animation visible
+      document.getElementById('flower-animation').style.visibility = 'visible';
+
+      // If animation is not initialized, start it
+      if (!animation) {
+        animation = lottie.loadAnimation({
+          container: document.getElementById('flower-animation'),
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: '\Animation - 1731163721474.json' // Use your local or URL path
+        });
+      }
+
+      // Trigger confetti animation
+      confetti({
+        particleCount: 500,
+        spread: 80,
+        origin: { x: 0.5, y: 0.5 },
+        gravity: 0.2,
+        drift: 0.1
+      });
+
+      // Erase all text content, including the apology message
+      document.querySelector('.container').innerHTML = '';
+
+      // Trigger the image bloom effect after a short delay
+      setTimeout(function() {
+        const image = document.querySelector('.thank-you-image');
+        image.style.transform = 'scale(1)';
+      }, 100);
+    }
+  </script>
+</body>
+</html>
